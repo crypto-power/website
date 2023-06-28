@@ -19,9 +19,5 @@
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^1.0.0",
     "gulp-watch": "^4.0.1"
-  },
-  "scripts": {
-    "preshrinkwrap": "git checkout -- npm-shrinkwrap.json",
-    "postshrinkwrap": "git checkout -- npm-shrinkwrap.json"
-  } 
+  }
 }
