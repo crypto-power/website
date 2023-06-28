@@ -33,6 +33,7 @@ var gulp                    = require("gulp"),
 // Start server
 gulp.task("browser-sync", function() {
     browserSync({
+        port: 4444,
         server: {
             baseDir: "dist"
         }
