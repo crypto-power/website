@@ -54,3 +54,6 @@ node_modules/
 archive
 
 .hugo_build.lock
+
+# Local Netlify folder
+.netlify
