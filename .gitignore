@@ -52,3 +52,5 @@ node_modules/
 
 # Other
 archive
+
+.hugo_build.lock
