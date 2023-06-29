@@ -3,14 +3,11 @@ title = "Cryptopower"
 languageCode = "en-us"
 
 [params]
-
-    favicon = "../images/favicon-32x32.png"
-    main = "Cryptopower"
-    info = "A cross-platform desktop SPV multichain (DCR, BTC & LTC) wallet built with gio."
-
+  favicon = "../images/cryptopower.png"
+  main = "Cryptopower"
+  info = "A cross-platform desktop SPV multichain (DCR, BTC & LTC) wallet built with gio."
 
 [menu]
-
   [[menu.main]]
     identifier = "about"
     name = "About"
