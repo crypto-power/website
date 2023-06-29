@@ -1,31 +1,54 @@
-<h1>Cryptopower Website</h1>
+This is the code for the [cryptopower.dev](https://www.cryptopower.dev) website.
 
-1. Installation: Follow the guideline listed [here](https://gohugo.io/installation/)
-2. Run the following command:
+## Requirements
 
-```bash
-$ hugo server
-Start building sites … 
-hugo v0.113.0-085c1b3d614e23d218ebf9daad909deaa2390c9a+extended linux/amd64 BuildDate=2023-06-05T15:04:51Z VendorInfo=snap:0.113.0
+* `Go` 1.11
+* `Hugo-extended` 0.63.0
 
-                   | EN  
--------------------+-----
-  Pages            | 24  
-  Paginator pages  |  2  
-  Non-page files   |  0  
-  Static files     | 51  
-  Processed images |  0  
-  Aliases          |  2  
-  Sitemaps         |  1  
-  Cleaned          |  0  
+You should now be able to access the site at `http://localhost:1313`
 
-Built in 64 ms
-Watching for changes in ~/app/golang/src/github.com/cryptopower/website/{content,data,static,themes}
-Watching for config changes in ~/app/golang/src/github.com/cryptopower/website/config.toml
-Environment: "development"
-Serving pages from memory
-Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
-Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
-Press Ctrl+C to stop
+## Testing
 
-```
+* Installing Go
+  * Minimum supported version is 1.11.4. Installation instructions can be found [here](https://golang.org/doc/install).
+  
+* Installing Hugo
+  * The instructions for your OS can find [here](https://gohugo.io/getting-started/installing/).
+  
+####  Start the Hugo server 
+
+* ` hugo server -D `
+
+* ` http://localhost:1313/ `
+
+## Static Deploy
+
+For a static deployment you must use the command ` hugo `.
+
+This will create a `Public` folder in the main path.
+Upload files to hosting or server.
+
+#### Some issues
+If the sass files are not displayed correctly, try changing the baseurl in the configuration file
+~~~
+config.toml 
+  baseurl = "URL"
+~~~ 
+## Another Options of Deployment
+
+For a another options of deployment you can consult the following documentation.
+
+- [Hugo Deploy](https://gohugo.io/hosting-and-deployment/hugo-deploy/).
+- [Host-Agnostic Deploys with Nanobox](https://gohugo.io/hosting-and-deployment/deployment-with-nanobox/).
+- [Host on Render](https://gohugo.io/hosting-and-deployment/hosting-on-render/).
+- [Host on AWS Amplify](https://gohugo.io/hosting-and-deployment/hosting-on-aws-amplify/).
+- [Host on Netlify](https://gohugo.io/hosting-and-deployment/hosting-on-netlify/).
+- [Host on GitHub](https://gohugo.io/hosting-and-deployment/hosting-on-github/).
+- [More Options](https://gohugo.io/hosting-and-deployment/)...
+
+#### Some issues
+If the sass files are not displayed correctly, try changing the baseurl in the configuration file
+~~~
+config.toml 
+  baseurl = "URL"
+~~~ 
