@@ -5,6 +5,7 @@
   .main {
     text-align: center;
     width: 100%; 
+    margin-top: 20%;
     h1 {
       font-weight: 700;
       color: $white;
@@ -27,7 +28,7 @@
           font-size: 1.6rem;
           &:hover,
           &:focus {
-            color: $green;
+            color: $primary;
           }
           @media only screen and (max-width : 768px) {
             font-size: 1.4rem;
@@ -52,9 +53,11 @@
 }
 
 .home{
-  height: 100vh; 
-  // background-image: url(../images/bg.jpg); 
-  background-size: cover;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 100px;
 }
 
 .about{
@@ -62,7 +65,7 @@
   width: 100%; 
   margin: 0 auto;
   h2{
-    border-bottom: 1px solid $green;
+    border-bottom: 1px solid $primary;
     padding-bottom: 15px;
     margin-bottom: 35px;
   }
@@ -84,7 +87,7 @@
     margin-bottom: 100px;
   
     h2{
-      border-bottom: 1px solid $green;
+      border-bottom: 1px solid $primary;
       padding-bottom: 15px;
       margin-bottom: 35px;
     }
@@ -104,7 +107,7 @@
   text-align: center;
   width: 100%;
   h2{
-    border-bottom: 1px solid $green;
+    border-bottom: 1px solid $primary;
     padding-bottom: 15px;
     margin-bottom: 35px;
   }

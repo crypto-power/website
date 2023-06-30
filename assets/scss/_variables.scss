@@ -7,16 +7,18 @@
 }
 
 // Fonts
-$text-font-family: 'Source Sans Pro', sans-serif;
-$heading-font-family: 'Source Sans Pro', sans-serif;
-$code-font-family: 'Source Sans Pro', sans-serif;
+$text-font-family: 'Circular', 'Arial', 'sans-serif';
+$heading-font-family: 'Circular', 'Arial', 'sans-serif';
+$code-font-family: 'Circular', 'Arial', 'sans-serif';
 
 // Colors
 $dark: #111;
 $gray: #1c1c1c;
+$primary: #3a5ef4;
 $green: #2DD8A3;
 $white: #E6EAED;
 
 *   {
+    --primary: #3a5ef4;
     --green: #2DD8A3; //for highlight links in the nav
     }
