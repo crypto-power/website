@@ -7,6 +7,6 @@
     {{ if .Site.Params.favicon }}
         <link rel="icon" href="{{ .Site.Params.favicon | absURL }}">
     {{ end }}
-    {{ $style := resources.Get "./scss/planetdecred.scss" | toCSS | minify | fingerprint}}
+    {{ $style := resources.Get "./scss/cryptopower.scss" | toCSS | minify | fingerprint}}
     <link rel="stylesheet" href="{{ $style.Permalink }}">
 </head>

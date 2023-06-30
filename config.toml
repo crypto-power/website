@@ -4,8 +4,8 @@ languageCode = "en-us"
 
 [params]
   favicon = "../images/cryptopower.png"
-  main = "Cryptopower"
-  info = "A cross-platform desktop SPV multichain (DCR, BTC & LTC) wallet built with gio."
+  main = "CRYPTOPOWER"
+  info = "A cross-platform SPV (DCR, BTC & LTC) wallet built with privacy in mind."
 
 [menu]
   [[menu.main]]

@@ -19,7 +19,7 @@
   }
   a {
     &:hover{
-      color: $green;
+      color: $primary;
       text-decoration: none;
     }
     &:focus {
@@ -31,8 +31,8 @@
     align-items: center;
     img{
       margin: 0;
-      width: 50px;
-      height: 50px;
+      width: 10.0rem;
+      height: 1.0rem;
     }
   }
   .navigation-list{
@@ -45,7 +45,7 @@
         font-size: 18px;
         text-decoration: none;
         &:hover{
-          color: $green;
+          color: $primary;
         }
         &:active, &:focus{
           color: $white;
@@ -88,7 +88,7 @@
     width: 25px;
     z-index: 1000000;
     &:active, .line1, &:active .line2, &:active .line3{
-      background: $green;
+      background: $primary;
     }
     @media only screen and (max-width : 1366px) {
       display: block;
