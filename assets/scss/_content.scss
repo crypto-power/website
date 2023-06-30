@@ -5,6 +5,7 @@
   .main {
     text-align: center;
     width: 100%; 
+    margin-top: 20%;
     h1 {
       font-weight: 700;
       color: $white;
@@ -52,9 +53,11 @@
 }
 
 .home{
-  height: 100vh; 
-  // background-image: url(../images/bg.jpg); 
-  background-size: cover;
+  width: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 100px;
 }
 
 .about{
