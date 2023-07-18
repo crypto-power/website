@@ -20,7 +20,7 @@ RUN hugo
 # Serve image (stable nginx version)
 FROM nginx:1.16
 
-LABEL description="planetdecredblog server"
+LABEL description="cryptopowerblog server"
 LABEL version="1.0"
 COPY conf/nginx.conf /etc/nginx/conf.d/default.conf
 
