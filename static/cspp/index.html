@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0040)https://planetdecred.org/cspp/index.html -->
+<!-- saved from url=(0040)https://cryptopower.dev/cspp/index.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Decred CoinShuffle++</title>
 <meta name="viewport" content="width=device-width">
@@ -30,7 +30,7 @@ belong to which peer.</p>
 
 <p>This server is configured with a self-signed TLS certificate.
 It must be saved and referenced by the <code>dcrwallet</code> config.
-<a href="https://planetdecred.org/cspp/cspp.planetdecred.org.pem" download="">Click here</a> to download
+<a href="https://cryptopower.dev/cspp/cspp.cryptopower.dev.pem" download="">Click here</a> to download
 and see below for config examples.</p>
 
 
@@ -50,8 +50,8 @@ wallet (using <code>importxpub</code>).</p>
 <p>Use the following options for a mixed solo ticket buyer which continues to
 buy more tickets from the mixed account as outputs mature:</p>
 
-<pre>$ dcrwallet --csppserver=cspp.planetdecred.org:5760 \
-  --csppserver.ca=cspp.planetdecred.org.pem \
+<pre>$ dcrwallet --csppserver=cspp.cryptopower.dev:5760 \
+  --csppserver.ca=cspp.cryptopower.dev.pem \
   --enableticketbuyer --purchaseaccount=mixed --mixedaccount=mixed/1 \
   --changeaccount=unmixed --ticketbuyer.votingaccount=voting --mixchange
 </pre>
@@ -86,8 +86,8 @@ buyer1$ dcrctl --wallet importxpub mixed <em>mixed-xpub</em>
 The mixed ticket buying wallet may use the setup from the previous section.  The
 old wallet must be configured slightly differently:
 
-<pre>buyer1$ dcrwallet --csppserver=cspp.planetdecred.org:5760 \
-  --csppserver.ca=cspp.planetdecred.org.pem \
+<pre>buyer1$ dcrwallet --csppserver=cspp.cryptopower.dev:5760 \
+  --csppserver.ca=cspp.cryptopower.dev.pem \
   --enableticketbuyer --purchaseaccount=default --mixedaccount=mixed/0 \
   --ticketsplitaccount=default --changeaccount=unmixed \
   --ticketbuyer.votingaccount=voting --mixchange
@@ -125,8 +125,8 @@ to the mixer in a request.
 
 </p><p>These features are enabled with the following config:</p>
 
-<pre>$ dcrwallet --csppserver=cspp.planetdecred.org:5760 \
-  --csppserver.ca=cspp.planetdecred.org.pem \
+<pre>$ dcrwallet --csppserver=cspp.cryptopower.dev:5760 \
+  --csppserver.ca=cspp.cryptopower.dev.pem \
   --mixedaccount=mixed/1 --changeaccount=unmixed --mixchange
 </pre>
 
