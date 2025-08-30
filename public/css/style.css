@@ -5807,3 +5807,5 @@ p {
   background-color: #2f55d4 !important;
   transform: rotate(45deg);
 }
+
+.fw-400 { font-weight: 400 !important; }
