@@ -1,13 +1,13 @@
 <script>
 import {
-    ArrowUpIcon ,
-    MonitorIcon,
-    FeatherIcon,
-    EyeIcon,
-    UserCheckIcon,
-    SmartphoneIcon,
-    HeartIcon,
-    } from "vue-feather-icons";
+  ArrowUpIcon,
+  MonitorIcon,
+  FeatherIcon,
+  EyeIcon,
+  UserCheckIcon,
+  SmartphoneIcon,
+  HeartIcon,
+} from "vue-feather-icons";
 import { Carousel, Slide } from "vue-carousel";
 import countTo from "vue-count-to";
 
@@ -17,7 +17,18 @@ import Footer from "@/components/footer";
 
 export default {
   data() {
-    return {};
+    return {
+      // Initialize data properties for all download links
+      macAmdUrl: null,
+      macArmUrl: null,
+      linuxAmdUrl: null,
+      linuxArmUrl: null,
+      windows64Url: null,
+      windows32Url: null,
+      freebsdAmdUrl: null,
+      freebsd32Url: null,
+      androidApkUrl: null,
+    };
   },
   components: {
     Navbar,
@@ -27,14 +38,51 @@ export default {
     Slide,
     ArrowUpIcon,
     countTo,
-    Carousel,
-    Slide,
     MonitorIcon,
     FeatherIcon,
     EyeIcon,
     UserCheckIcon,
     SmartphoneIcon,
     HeartIcon,
+  },
+  mounted() {
+    const apiUrl = `https://api.github.com/repos/crypto-power/cryptopower/releases/latest`;
+
+    // A mapping of data properties to their corresponding asset name prefixes/suffixes.
+    const assetMap = {
+      macAmdUrl: (assetName) => assetName.startsWith('cryptopower-darwin-amd64'),
+      macArmUrl: (assetName) => assetName.startsWith('cryptopower-darwin-arm64'),
+      linuxAmdUrl: (assetName) => assetName.startsWith('cryptopower-linux-amd64'),
+      linuxArmUrl: (assetName) => assetName.startsWith('cryptopower-linux-arm64'),
+      windows64Url: (assetName) => assetName.startsWith('cryptopower-windows-amd64'),
+      windows32Url: (assetName) => assetName.startsWith('cryptopower-windows-386'),
+      freebsdAmdUrl: (assetName) => assetName.startsWith('cryptopower-freebsd-amd64'),
+      freebsd32Url: (assetName) => assetName.startsWith('cryptopower-freebsd-386'),
+      androidApkUrl: (assetName) => assetName.endsWith('.apk'),
+    };
+
+    fetch(apiUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`GitHub API error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Iterate through the asset map and check if the asset exists in the latest release.
+        for (const [prop, matcherFunc] of Object.entries(assetMap)) {
+          const asset = data.assets.find(a => matcherFunc(a.name));
+          if (asset) {
+            this[prop] = asset.browser_download_url;
+          } else {
+            // If the asset is not found, leave the URL as null (which is the initial state).
+            this[prop] = null;
+          }
+        }
+      })
+      .catch(error => {
+        console.error('Failed to fetch the latest release:', error);
+      });
   },
 };
 </script>
@@ -439,36 +487,51 @@ export default {
     <!-- Feature End -->
 
      <!-- Download cta start -->
-    <section id="downloads" class="section">
-      <div class="container">
+    <template>
+      <section id="downloads" class="section">
+        <div class="container">
 
-        <div
-          class="row mt-md-5 pt-md-3 mt-4 pt-2 mt-sm-0 pt-sm-0 justify-content-center"
-        >
-          <div class="col-12 text-center">
-            <div class="section-title">
-              <h4 class="title mb-4">Download Cryptopower Wallet</h4>
-              <p class="text-muted para-desc mx-auto">
-                Choose the right version for your operating system and install Cryptopower Wallet to securely manage, send, and exchange your crypto with ease anytime, anywhere.
-              </p>
-              <div class="mt-4">
-                <a class="" href="https://github.com/crypto-power/cryptopower/releases"
-                    target="_blank">Mac OS ↓ <span style="margin-left: 5px;">| </span></a>
-                <a class=""
-                    href="https://github.com/crypto-power/cryptopower/releases"
-                    target="_blank">Linux ↓ <span style="margin-left: 5px;">| </span></a>
-                <a class="add-margin"
-                    href="https://github.com/crypto-power/cryptopower/releases"
-                    target="_blank">Windows ↓ <span style="margin-left: 5px;">| </span></a>
-                <a class="add-margin"
-                    href="https://github.com/crypto-power/cryptopower/releases"
-                    target="_blank">FreeBSD ↓ <span style="margin-left: 5px;">| </span></a>
-                    <a class="add-margin"
-                    href="https://github.com/crypto-power/cryptopower/releases"
-                    target="_blank">Android (APK) ↓ <span style="margin-left: 5px;">| </span></a>
-                <a class="add-margin" href="https://github.com/crypto-power/cryptopower/releases" target="_blank">Release Notes
-                    →</a>
-              </div>
+          <div
+            class="row mt-md-5 pt-md-3 mt-4 pt-2 mt-sm-0 pt-sm-0 justify-content-center"
+          >
+            <div class="col-12 text-center">
+              <div class="section-title">
+                <h4 class="title mb-4">Download Cryptopower Wallet</h4>
+                <p class="text-muted para-desc mx-auto">
+                  Choose the right version for your operating system and install Cryptopower Wallet to securely manage, send, and exchange your crypto with ease anytime, anywhere.
+                </p>
+                <div class="mt-4">
+                  <b-dropdown v-if="macAmdUrl || macArmUrl" text="Mac OS ↓" variant="link" class="d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
+                    <b-dropdown-item v-if="macAmdUrl" :href="macAmdUrl">Download AMD</b-dropdown-item>
+                    <b-dropdown-item v-if="macArmUrl" :href="macArmUrl">Download ARM</b-dropdown-item>
+                  </b-dropdown>
+                  <span v-if="(macAmdUrl || macArmUrl)" class="mx-2">|</span>
+                  
+                  <b-dropdown v-if="linuxAmdUrl || linuxArmUrl" text="Linux ↓" variant="link" class="d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
+                    <b-dropdown-item v-if="linuxAmdUrl" :href="linuxAmdUrl">Download AMD</b-dropdown-item>
+                    <b-dropdown-item v-if="linuxArmUrl" :href="linuxArmUrl">Download ARM</b-dropdown-item>
+                  </b-dropdown>
+                  <span v-if="(linuxAmdUrl || linuxArmUrl)" class="mx-2">|</span>
+                  
+                  <b-dropdown v-if="windows64Url || windows32Url" text="Windows ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
+                    <b-dropdown-item v-if="windows64Url" :href="windows64Url">Download 64bit</b-dropdown-item>
+                    <b-dropdown-item v-if="windows32Url" :href="windows32Url">Download 32bit</b-dropdown-item>
+                  </b-dropdown>
+                  <span v-if="(windows64Url || windows32Url)" class="mx-2">|</span>
+                  
+                  <b-dropdown v-if="freebsdAmdUrl || freebsd32Url" text="FreeBSD ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
+                    <b-dropdown-item v-if="freebsd32Url" :href="freebsd32Url">Download 32bit</b-dropdown-item>
+                    <b-dropdown-item v-if="freebsdAmdUrl" :href="freebsdAmdUrl">Download AMD</b-dropdown-item>
+                  </b-dropdown>
+                  <span v-if="(freebsdAmdUrl || freebsd32Url)" class="mx-2">|</span>
+
+                  <b-dropdown v-if="androidApkUrl" text="Android (APK) ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
+                    <b-dropdown-item :href="androidApkUrl">Download APK</b-dropdown-item>
+                  </b-dropdown>
+                  <span v-if="(androidApkUrl)" class="mx-2">|</span>
+              
+              <a class="add-margin" href="https://github.com/crypto-power/cryptopower/releases" target="_blank">Release Notes →</a>
+            </div>
 
               <div class="mt-4">
                 <a 
@@ -492,6 +555,7 @@ export default {
       </div>
       <!--end container-->
     </section>
+    </template>
     <!--end section-->
     <!-- Section End -->
 
@@ -536,7 +600,7 @@ export default {
                             <br><br> The app is built using Gio, a Golang library that facilitates the implementation of cross-platform immediate mode user interfaces. 
                             By leveraging a tightly integrated Golang codebase, Cryptopower delivers a native app experience that is smaller, faster, and more efficient for the Decred ecosystem.
 
-</p>
+                        </p>
                       </b-card-body>
                     </b-collapse>
                   </b-card>
