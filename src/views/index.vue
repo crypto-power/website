@@ -474,7 +474,7 @@ export default {
                 <a 
                   href="https://apps.apple.com/us/app/cryptopower-wallet/id6472668308"
                   target="_blank"
-                 class="btn btn-primary mt-2 mr-2"
+                  class="btn btn-primary mt-2 mr-2"
                   ><i class="mdi mdi-apple"></i> App Store</a
                 >
                 <a
