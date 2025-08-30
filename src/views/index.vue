@@ -1,13 +1,13 @@
 <script>
 import {
-     ArrowUpIcon ,
-  MonitorIcon,
-  FeatherIcon,
-  EyeIcon,
-  UserCheckIcon,
-  SmartphoneIcon,
-  HeartIcon,
-     } from "vue-feather-icons";
+    ArrowUpIcon ,
+    MonitorIcon,
+    FeatherIcon,
+    EyeIcon,
+    UserCheckIcon,
+    SmartphoneIcon,
+    HeartIcon,
+    } from "vue-feather-icons";
 import { Carousel, Slide } from "vue-carousel";
 import countTo from "vue-count-to";
 
@@ -15,9 +15,6 @@ import Navbar from "@/components/navbar";
 import Switcher from "@/components/switcher";
 import Footer from "@/components/footer";
 
-/**
- * Index-crypto component
- */
 export default {
   data() {
     return {};
@@ -63,7 +60,7 @@ export default {
               </p>
               <div class="mt-4">
                 <a
-                  href="https://apps.apple.com/ca/app/cryptopower-wallet/id6472668308"
+                  href="https://apps.apple.com/us/app/cryptopower-wallet/id6472668308"
                   target="_blank"
                   class="btn btn-outline-primary mt-2 mr-2"
                 ><i class="mdi mdi-apple"></i> App Store</a>
@@ -474,12 +471,16 @@ export default {
               </div>
 
               <div class="mt-4">
-                <a href="javascript:void(0)" class="btn btn-primary mt-2 mr-2"
+                <a 
+                  href="https://apps.apple.com/us/app/cryptopower-wallet/id6472668308"
+                  target="_blank"
+                  class="btn btn-primary mt-2 mr-2"
                   ><i class="mdi mdi-apple"></i> App Store</a
                 >
                 <a
-                  href="javascript:void(0)"
-                  class="btn btn-outline-primary mt-2"
+                  href="https://play.google.com/store/apps/details?id=com.dreacotdigital.cryptopower.mainnet"
+                  target="_blank"
+                  class="btn btn-primary mt-2"
                   ><i class="mdi mdi-google-play"></i> Play Store</a
                 >
               </div>
@@ -588,9 +589,12 @@ export default {
                       role="tabpanel"
                     >
                       <b-card-body class="px-2 py-4">
-                        <p class="text-muted mb-0 faq-ans">Our incredible support team is standing by 24/7 to help you out. You can find us in your app (just tap “Help” in the settings), on our site (just click support), or via email <a href="mailto:support@cryptopower.dev" class="text-primary mt-3 mb-0">support@cryptopower.dev</a>.
+                        <p class="text-muted mb-0 faq-ans">Our support team is here for you 24/7. You can reach us anytime through the app (just tap “Help” in the Settings), on our website (click                 <router-link to="" v-scroll-to="'#support'" class="text-foot"
+                  >
+                  Support</router-link
+                >), or via email <a href="mailto:support@cryptopower.dev" class="text-primary mt-3 mb-0">support@cryptopower.dev</a>.
 
-                            <br><br> We are always happ to point you in the right direction!</p>
+                            <br><br> We are always happy to point you in the right direction!</p>
                       </b-card-body>
                     </b-collapse>
                   </b-card>
@@ -656,7 +660,7 @@ export default {
                             </div>
                             <div class="content mt-3">
                                 <router-link to="" href="https://matrix.to/#/#cryptopower:decred.org" target="_blank" class="title h5 text-dark">Matrix</router-link>
-                                <p class="text-muted mt-3 mb-0">Live support</p>
+                                <p class="text-muted mt-3 mb-0">Community Support</p>
                             </div>
                         </div>
                     </div>
@@ -671,7 +675,7 @@ export default {
                             </div>
                             <div class="content mt-3">
                                 <router-link to="" href="https://twitter.com/cryptopowerwlt" target="_blank" class="title h5 text-dark">Twitter</router-link>
-                                <p class="text-muted mt-3 mb-0">Live support</p>
+                                <p class="text-muted mt-3 mb-0">Community Support</p>
                             </div>
                         </div>
                     </div>
@@ -686,7 +690,7 @@ export default {
                             </div>
                             <div class="content mt-3">
                                 <router-link to="" href="https://t.me/cryptopowerwallet" target="_blank" class="title h5 text-dark">Telegram</router-link>
-                                <p class="text-muted mt-3 mb-0">Live support</p>
+                                <p class="text-muted mt-3 mb-0">Community Support</p>
                             </div>
                         </div>
                     </div>
@@ -700,7 +704,7 @@ export default {
                                 <i class="uil uil-envelope-alt"></i>
                             </div>
                             <div class="content mt-3">
-                                <router-link to="" class="title h5 text-dark">Email</router-link>
+                                <a to href="mailto:support@cryptopower.dev" class="title h5 text-dark">Email</a>
                                 <p class="text-muted mt-3 mb-0"><a href="mailto:support@cryptopower.dev" class="text-primary mt-3 mb-0">support@cryptopower.dev</a></p>
                             </div>
                         </div>
