@@ -28,6 +28,7 @@ export default {
       freebsdAmdUrl: null,
       freebsd32Url: null,
       androidApkUrl: null,
+      version: null,
     };
   },
   components: {
@@ -69,6 +70,7 @@ export default {
         return response.json();
       })
       .then(data => {
+        this.version = data.tag_name
         // Iterate through the asset map and check if the asset exists in the latest release.
         for (const [prop, matcherFunc] of Object.entries(assetMap)) {
           const asset = data.assets.find(a => matcherFunc(a.name));
@@ -496,38 +498,42 @@ export default {
           >
             <div class="col-12 text-center">
               <div class="section-title">
-                <h4 class="title mb-4">Download Cryptopower Wallet</h4>
+                <h4 class="title mb-4">Download Cryptopower Wallet<p v-if="version" class="text-muted para-desc mx-auto" style="font-size:20px">({{version}})</p></h4>
                 <p class="text-muted para-desc mx-auto">
                   Choose the right version for your operating system and install Cryptopower Wallet to securely manage, send, and exchange your crypto with ease anytime, anywhere.
                 </p>
                 <div class="mt-4">
-                  <b-dropdown v-if="macAmdUrl || macArmUrl" text="Mac OS ↓" variant="link" class="d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
-                    <b-dropdown-item v-if="macAmdUrl" :href="macAmdUrl">Download AMD</b-dropdown-item>
-                    <b-dropdown-item v-if="macArmUrl" :href="macArmUrl">Download ARM</b-dropdown-item>
+                  <b-dropdown v-if="macAmdUrl || macArmUrl" text="Mac OS ↓" variant="link" class="d-inline-block" toggle-class="text-decoration-none p-0 fw-400" no-caret>
+                    <b-dropdown-item v-if="macAmdUrl" :href="macAmdUrl">Download MacOS AMD64</b-dropdown-item>
+                    <b-dropdown-item v-if="macArmUrl" :href="macArmUrl">Download MacOS ARM64</b-dropdown-item>
                   </b-dropdown>
                   <span v-if="(macAmdUrl || macArmUrl)" class="mx-2">|</span>
                   
-                  <b-dropdown v-if="linuxAmdUrl || linuxArmUrl" text="Linux ↓" variant="link" class="d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
-                    <b-dropdown-item v-if="linuxAmdUrl" :href="linuxAmdUrl">Download AMD</b-dropdown-item>
-                    <b-dropdown-item v-if="linuxArmUrl" :href="linuxArmUrl">Download ARM</b-dropdown-item>
+                  <b-dropdown v-if="linuxAmdUrl || linuxArmUrl" text="Linux ↓" variant="link" class="d-inline-block" toggle-class="text-decoration-none p-0 fw-400" no-caret>
+                    <b-dropdown-item v-if="linuxAmdUrl" :href="linuxAmdUrl">Download Linux AMD64</b-dropdown-item>
+                    <b-dropdown-item v-if="linuxArmUrl" :href="linuxArmUrl">Download Linux ARM64</b-dropdown-item>
                   </b-dropdown>
                   <span v-if="(linuxAmdUrl || linuxArmUrl)" class="mx-2">|</span>
                   
-                  <b-dropdown v-if="windows64Url || windows32Url" text="Windows ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
-                    <b-dropdown-item v-if="windows64Url" :href="windows64Url">Download 64bit</b-dropdown-item>
-                    <b-dropdown-item v-if="windows32Url" :href="windows32Url">Download 32bit</b-dropdown-item>
+                  <b-dropdown v-if="windows64Url || windows32Url" text="Windows ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0 fw-400" no-caret>
+                    <b-dropdown-item v-if="windows32Url" :href="windows32Url">Download Windows 32-bit</b-dropdown-item>
+                    <b-dropdown-item v-if="windows64Url" :href="windows64Url">Download Windows 64-bit</b-dropdown-item>
                   </b-dropdown>
                   <span v-if="(windows64Url || windows32Url)" class="mx-2">|</span>
                   
-                  <b-dropdown v-if="freebsdAmdUrl || freebsd32Url" text="FreeBSD ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
-                    <b-dropdown-item v-if="freebsd32Url" :href="freebsd32Url">Download 32bit</b-dropdown-item>
-                    <b-dropdown-item v-if="freebsdAmdUrl" :href="freebsdAmdUrl">Download AMD</b-dropdown-item>
+                  <b-dropdown v-if="freebsdAmdUrl || freebsd32Url" text="FreeBSD ↓"  class="add-margin d-inline-block" toggle-class="text-decoration-none p-0 fw-400" no-caret>
+                    <b-dropdown-item v-if="freebsd32Url" :href="freebsd32Url">Download FreeBSD 32-bit x86</b-dropdown-item>
+                    <b-dropdown-item v-if="freebsdAmdUrl" :href="freebsdAmdUrl">Download FreeBSD 64-bit x86</b-dropdown-item>
                   </b-dropdown>
                   <span v-if="(freebsdAmdUrl || freebsd32Url)" class="mx-2">|</span>
 
-                  <b-dropdown v-if="androidApkUrl" text="Android (APK) ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0" no-caret>
-                    <b-dropdown-item :href="androidApkUrl">Download APK</b-dropdown-item>
-                  </b-dropdown>
+                  <b-link v-if="androidApkUrl"
+                        :href="androidApkUrl"
+                        class="add-margin d-inline-block text-decoration-none fw-400"
+                        variant="link"
+                        >
+                   Android (APK) ↓
+                  </b-link>
                   <span v-if="(androidApkUrl)" class="mx-2">|</span>
               
               <a class="add-margin" href="https://github.com/crypto-power/cryptopower/releases" target="_blank">Release Notes →</a>
