@@ -493,7 +493,7 @@ export default {
                   </b-dropdown>
                   <span v-if="(windows64Url || windows32Url)" class="mx-2">|</span>
                   
-                  <b-dropdown v-if="freebsdAmdUrl || freebsd32Url" text="FreeBSD ↓"  class="add-margin d-inline-block" toggle-class="text-decoration-none p-0 fw-400" no-caret>
+                  <b-dropdown v-if="freebsdAmdUrl || freebsd32Url" text="FreeBSD ↓" variant="link" class="add-margin d-inline-block" toggle-class="text-decoration-none p-0 fw-400" no-caret>
                     <b-dropdown-item v-if="freebsd32Url" :href="freebsd32Url">Download FreeBSD 32-bit x86</b-dropdown-item>
                     <b-dropdown-item v-if="freebsdAmdUrl" :href="freebsdAmdUrl">Download FreeBSD 64-bit x86</b-dropdown-item>
                   </b-dropdown>
