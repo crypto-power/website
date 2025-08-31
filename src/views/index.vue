@@ -29,6 +29,7 @@ export default {
       freebsd32Url: null,
       androidApkUrl: null,
       version: null,
+      marketData: []
     };
   },
   components: {
@@ -84,6 +85,20 @@ export default {
       })
       .catch(error => {
         console.error('Failed to fetch the latest release:', error);
+      });
+
+    fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=decred,bitcoin,litecoin")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`CoinGecko API error: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        this.marketData = data;
+      })
+      .catch(error => {
+        console.error("Failed to fetch market rates:", error);
       });
   },
 };
@@ -160,7 +175,7 @@ export default {
     <!-- Hero End -->
 
     <!-- TABLE START -->
-    <section class="section border-top">
+    <section v-if="marketData.length" class="section border-top">
       <!-- Table Start -->
       <div class="container">
         <div class="row justify-content-center">
@@ -189,69 +204,26 @@ export default {
                   </tr>
                 </thead>
                 <tbody>
-
-                  <tr>
-                    <td scope="row">1</td>
+                <tr v-for="(coin, index) in marketData" :key="coin.id">
+                    <td>{{ index + 1 }}</td>
                     <th>
-                      <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center">
                         <img
-                          src="images/crypto/logo_dcr_blue.png"
-                          class="float-left mr-3"
-                          height="50"
-                          alt=""
+                        :src="`images/crypto/logo_${coin.symbol}.png`"
+                        class="float-left mr-3"
+                        height="50"
+                        alt=""
                         >
-                        <p class="mb-0 font-weight-normal h5">Decred <span class="text-muted h6">DCR</span> </p>
-                      </div>
+                        <p class="mb-0 font-weight-normal h5">
+                        {{ coin.name }} <span class="text-muted h6">{{ coin.symbol.toUpperCase() }}</span>
+                        </p>
+                    </div>
                     </th>
-                    <td>$17.68</td>
-                    <td class="text-danger">-1.9</td>
-                    <!-- <td><a
-                        href="javascript:void(0)"
-                        class="btn btn-primary"
-                      >Buy</a></td> -->
-                  </tr>
-
-                  <tr>
-                    <td scope="row">2</td>
-                    <th>
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="images/crypto/logo_btc.png"
-                          class="float-left mr-3"
-                          height="50"
-                          alt=""
-                        >
-                        <p class="mb-0 font-weight-normal h5">Bitcoin <span class="text-muted h6">BTC</span> </p>
-                      </div>
-                    </th>
-                    <td>$ 113,000.68</td>
-                    <td class="text-danger">-2.5</td>
-                    <!-- <td><a
-                        href="javascript:void(0)"
-                        class="btn btn-primary"
-                      >Buy</a></td> -->
-                  </tr>
-
-                  <tr>
-                    <td scope="row">3</td>
-                    <th>
-                      <div class="d-flex align-items-center">
-                        <img
-                          src="images/crypto/logo_ltc.png"
-                          class="float-left mr-3"
-                          height="50"
-                          alt=""
-                        >
-                        <p class="mb-0 font-weight-normal h5">Litecoin <span class="text-muted h6">LTC</span></p>
-                      </div>
-                    </th>
-                    <td>$ 134.43</td>
-                    <td class="text-success">+.264</td>
-                    <!-- <td><a
-                        href="javascript:void(0)"
-                        class="btn btn-primary"
-                      >Buy</a></td> -->
-                  </tr>
+                    <td>${{ coin.current_price.toLocaleString() }}</td>
+                    <td :class="coin.price_change_percentage_24h >= 0 ? 'text-success' : 'text-danger'">
+                    {{ coin.price_change_percentage_24h.toFixed(2) }}%
+                    </td>
+                </tr>
                 </tbody>
               </table>
               <!--end table-->
