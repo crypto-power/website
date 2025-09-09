@@ -491,7 +491,7 @@ export default {
                     v-if="version"
                     class="text-muted para-desc mx-auto"
                     style="font-size:18px"
-                  >{{ fmtNum(totalDownloads) }} download{{ totalDownloads === 1 ? '' : 's' }} since {{ version }}
+                  >{{ fmtNum(totalDownloads) }} Github download{{ totalDownloads === 1 ? '' : 's' }} since {{ version }}
                     <span v-if="releasedAt"> released on {{ fmtDate(releasedAt) }}</span></p>
                 </h4>
                 <p class="text-muted para-desc mx-auto">
